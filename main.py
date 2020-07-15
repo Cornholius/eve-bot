@@ -5,6 +5,15 @@ import cv2
 import numpy as np
 from bot_eyes import Find
 from img import *
+from time import sleep
+import time
+from bot_hands import Logic
 
-lookup = Find()
-print(lookup.find_mana(minus1))
+
+sleep(2)
+eyes = Find()
+hands = Logic()
+eyes.screenshot_gui()
+eyes.find_gui(overview_border_start)
+coord = eyes.find_object(fortizar)
+hands.dock()
