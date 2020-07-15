@@ -7,16 +7,23 @@ from time import sleep
 
 class Logic:
 
-    def dock(self):
+    def dock(self, coords):
+        q = pyautogui.locateCenterOnScreen(fortizar, region=coords, confidence=.75)
+        pyautogui.dragTo(q)
+        sleep(0.3)
         pydirectinput.rightClick()
-        sleep(1)
-        point = (pyautogui.position())
-        print(point)
-        menu = pyautogui.screenshot(region=(point[0], point[1], 180, 300))
-        menu = cv2.cvtColor(np.array(menu), cv2.COLOR_RGB2BGR)
-        cv2.imwrite('./images/1.png', menu)
-        qwe = pyautogui.locate(dock, menu)
-        print(qwe)
-        pyautogui.moveTo(point[0] + qwe[0], point[1] + qwe[1])
-        sleep(1)
+        sleep(0.3)
+        w = pyautogui.locateCenterOnScreen(dock, region=coords, confidence=.75)
+        pyautogui.moveTo(w)
+        sleep(0.3)
+        pydirectinput.leftClick()
+
+    def go_to_spot(self, coords):
+        q = pyautogui.locateCenterOnScreen(spot, region=coords, confidence=.75)
+        pyautogui.dragTo(q)
+        sleep(0.3)
+        pydirectinput.rightClick()
+        sleep(0.3)
+        pyautogui.moveTo(q[0] + 40, q[1] + 10)
+        sleep(0.3)
         pydirectinput.leftClick()
