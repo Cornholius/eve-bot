@@ -20,20 +20,25 @@ class Find:
         left_top_corner = pyautogui.locate(image[0], screenshot, confidence=.75)  # ищем левый верхний угол
         right_border = self.width - left_top_corner[0]
         bottom_border = self.height - left_top_corner[1]
-        temporary_screenshot = pyautogui.screenshot(region=(left_top_corner[0],  # отрезаем лишнее
-                                                            left_top_corner[1],
-                                                            right_border,
-                                                            bottom_border))
-        right_bottom_corner_startpoint = pyautogui.locate(image[1], temporary_screenshot)  # ищем правый нижний угол
+        temporary_screenshot = pyautogui.screenshot(
+            region=(left_top_corner[0], left_top_corner[1], right_border, bottom_border))  # отрезаем лишнее
+
+        www = pyautogui.screenshot(region=(left_top_corner[0], left_top_corner[1], right_border, bottom_border))
+        www = cv2.cvtColor(np.array(www), cv2.COLOR_RGB2BGR)
+        cv2.imwrite('./images/temp.png', www)
+
+        right_bottom_corner = pyautogui.locate(image[1], temporary_screenshot)  # ищем правый нижний угол
+        pyautogui.moveTo(right_bottom_corner[0] + left_top_corner[0], right_bottom_corner[1] + left_top_corner[1])
         x_start = left_top_corner[0]
         y_start = left_top_corner[1]
-        x_end = right_bottom_corner_startpoint[1] + right_bottom_corner_startpoint[3]
-        y_end = right_bottom_corner_startpoint[0] + right_bottom_corner_startpoint[2]
-        gui_borders_coord = (x_start, y_start, y_end, x_end)
+        x_end = right_bottom_corner[0] + right_bottom_corner[3]
+        y_end = right_bottom_corner[1] + right_bottom_corner[2]
+        gui_borders_coord = (x_start, y_start, x_end, y_end)
 
         www = pyautogui.screenshot(region=gui_borders_coord)
         www = cv2.cvtColor(np.array(www), cv2.COLOR_RGB2BGR)
         cv2.imwrite('./images/{}.png'.format(name), www)
+
         return gui_borders_coord
 
     def find_object_in_overview(self, image, coords):
