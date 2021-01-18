@@ -15,7 +15,7 @@ sleep(1)
 eyes = Find()
 hands = Logic()
 # Подготовка и поиск элементов интерфейса
-eyes.screenshot_gui()
+# eyes.screenshot_gui()
 try:
     overview = eyes.find_gui(gui['overview'], '!overview')
     print('overview ready')
