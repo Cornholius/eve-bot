@@ -17,16 +17,16 @@ hands = Logic()
 # Подготовка и поиск элементов интерфейса
 # eyes.screenshot_gui()
 try:
-    overview = eyes.find_gui(gui['overview'], '!overview')
-    print('overview ready')
-    chat = eyes.find_gui(gui['chat'], '!chat')
-    print('chat ready')
-    spots = eyes.find_gui(gui['spots'], '!spots')
-    print('spots ready')
-    cargo = eyes.find_gui(gui['cargo'], '!cargo')
-    print('cargo ready')
-    # drones = eyes.find_gui(gui['drones'], '!drones')
-    # print('drones ready')
+    overview = eyes.find_gui(gui['overview'])
+    print('overview', overview)
+    chat = eyes.find_gui(gui['chat'])
+    print('chat', chat)
+    spots = eyes.find_gui(gui['spots'])
+    print('spots', spots)
+    cargo = eyes.find_gui(gui['cargo'])
+    print('cargo', cargo)
+    drones = eyes.find_gui(gui['drones'])
+    print('drones', drones)
 
 except:
     pass

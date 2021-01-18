@@ -37,7 +37,9 @@ def find_ui(image):
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-
+    cv2.imwrite('./images/{}.png'.format(image), final)
+    print(corner1[0], corner1[1], corner2[0]+corner2[2]+corner1[0], corner2[1]+corner2[3]+corner1[1])
+    gui_borders_coord = (corner1[0], corner1[1], corner2[0]+corner2[2]+corner1[0], corner2[1]+corner2[3]+corner1[1])
 
 find_ui('overview')
 find_ui('chat')
