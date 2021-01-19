@@ -17,10 +17,11 @@ hands = Logic()
 
 # Подготовка и поиск элементов интерфейса
 eyes.screenshot_gui()
-ui = ['overview', 'chat', 'spots', 'cargo', 'drones']
+ui = {'overview': '', 'chat': '', 'spots': '', 'cargo': '', 'drones': ''}
 for i in ui:
     try:
         element = eyes.find_gui(gui[i])
+        ui[i] = element
         region = (element[0], element[1], element[2] - element[0], element[3] - element[1])
         www = pyautogui.screenshot(region=region)
         www = cv2.cvtColor(np.array(www), cv2.COLOR_RGB2BGR)
@@ -28,17 +29,25 @@ for i in ui:
         print(i, element)
     except:
         pass
-
-# hands.go_to_spot(spots)
+# hands.dock(ui['spots'])
+# while True:
+#     qwe = pyautogui.locateOnScreen(gui['overview'][0], region=ui['overview'], confidence=.75)
+#     if qwe is None:
+#         sleep(3)
+#         break
+hands.undock(ui['overview'])
+# hands.undock(ui['overview'])
 # sleep(3)
-
+#
 # while True:
 #     sleep(1)
 #     qwe = pyautogui.locateOnScreen(warp, confidence=.75)
 #     if qwe is None:
 #         break
-#     print(qwe)
-# hands.dock(overview)
+# sleep(3)
+# pydirectinput.press('F1')
+
+# hands.dock(ui['overview'])
 # qwe = eyes.find_object_in_overview(fortizar, overview)
 # www = pyautogui.screenshot(region=chat)
 # www =cv2.cvtColor(np.array(www), cv2.COLOR_RGB2BGR)

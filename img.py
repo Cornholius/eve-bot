@@ -14,11 +14,15 @@ undock = cv2.imread('images/citadel/undock.png')
 astrahaus = cv2.imread('images/citadel/astrahaus.png')
 raitaru = cv2.imread('images/citadel/raitaru.png')
 fortizar = cv2.imread('images/citadel/fortizar.png')
+athanor = cv2.imread('images/citadel/athanor.png')
+sotio = cv2.imread('images/citadel/sotio.png')
+tatara = cv2.imread('images/citadel/tatara.png')
 
 # в космосе
 warping = cv2.imread('images/space/warping.png')
 warp_drive_active = cv2.imread('images/space/warp_drive_active.png')
 spot = cv2.imread('images/space/spot.png')
+dock_spot = cv2.imread('images/space/dock_spot.png')
 warp = cv2.imread('images/space/warp.png')
 
 gui = {'overview': (cv2.imread('images/gui/overview_border_start.png'), cv2.imread(
