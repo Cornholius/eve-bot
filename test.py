@@ -41,6 +41,10 @@ def find_ui(image):
     print(corner1[0], corner1[1], corner2[0]+corner2[2]+corner1[0], corner2[1]+corner2[3]+corner1[1])
     gui_borders_coord = (corner1[0], corner1[1], corner2[0]+corner2[2]+corner1[0], corner2[1]+corner2[3]+corner1[1])
 
+    output = image.copy()
+    cv2.rectangle(output, (2600, 800), (4100, 2400), (0, 255, 255), 10)
+    viewImage(output, "Обводим прямоугольником лицо пёсика")
+
 find_ui('overview')
 find_ui('chat')
 find_ui('cargo')
