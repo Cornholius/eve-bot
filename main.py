@@ -9,34 +9,32 @@ from time import sleep
 import time
 from bot_hands import Logic
 
-sleep(1)
+sleep(2)
 
 # Инициализация бота
 eyes = Find()
 hands = Logic()
-
 # Подготовка и поиск элементов интерфейса
 eyes.screenshot_gui()
-ui = {'overview': '', 'chat': '', 'spots': '', 'cargo': '', 'drones': ''}
-for i in ui:
-    try:
-        element = eyes.find_gui(gui[i])
-        ui[i] = element
-        region = (element[0], element[1], element[2] - element[0], element[3] - element[1])
-        www = pyautogui.screenshot(region=region)
-        www = cv2.cvtColor(np.array(www), cv2.COLOR_RGB2BGR)
-        cv2.imwrite('./images/!{}.png'.format(i), www)
-        print(i, element)
-    except:
-        pass
-# hands.dock(ui['spots'])
-# while True:
-#     qwe = pyautogui.locateOnScreen(gui['overview'][0], region=ui['overview'], confidence=.75)
-#     if qwe is None:
-#         sleep(3)
-#         break
-hands.undock(ui['overview'])
-# hands.undock(ui['overview'])
+overview, chat, spots, cargo, drones = 0, 0, 0, 0, 0
+
+try:
+    overview = eyes.find_gui(gui['overview'])
+    print('1. overview', overview)
+    chat = eyes.find_gui(gui['chat'])
+    print('2. chat', chat)
+    spots = eyes.find_gui(gui['spots'])
+    print('3. spots', spots)
+    cargo = eyes.find_gui(gui['cargo'])
+    print('4. cargo', cargo)
+    drones = eyes.find_gui(gui['drones'])
+    print('5. drones', drones)
+
+except:
+    pass
+# hands.undock()
+# sleep(5)
+# hands.go_to_spot(spots)
 # sleep(3)
 #
 # while True:
@@ -44,11 +42,26 @@ hands.undock(ui['overview'])
 #     qwe = pyautogui.locateOnScreen(warp, confidence=.75)
 #     if qwe is None:
 #         break
-# sleep(3)
-# pydirectinput.press('F1')
-
-# hands.dock(ui['overview'])
+#     print(qwe)
+# hands.dock(overview)
 # qwe = eyes.find_object_in_overview(fortizar, overview)
 # www = pyautogui.screenshot(region=chat)
 # www =cv2.cvtColor(np.array(www), cv2.COLOR_RGB2BGR)
 # cv2.imwrite('./images/12.png', www)
+
+def test():
+    hands.dock(overview)
+    sleep(7)
+    hands.undock(overview)
+    sleep(5)
+    hands.go_to_spot(spots)
+    sleep(3)
+    while True:
+        sleep(1)
+        qwe = pyautogui.locateOnScreen(warp, confidence=.75)
+        if qwe is None:
+            break
+    sleep(2)
+    hands.dock(overview)
+
+test()
