@@ -9,30 +9,34 @@ from time import sleep
 import time
 from bot_hands import Logic
 
-sleep(1)
+sleep(2)
 
 # Инициализация бота
 eyes = Find()
 hands = Logic()
 # Подготовка и поиск элементов интерфейса
-# eyes.screenshot_gui()
+eyes.screenshot_gui()
+overview, chat, spots, cargo, drones = 0, 0, 0, 0, 0
+
 try:
     overview = eyes.find_gui(gui['overview'])
-    print('overview', overview)
+    print('1. overview', overview)
     chat = eyes.find_gui(gui['chat'])
-    print('chat', chat)
+    print('2. chat', chat)
     spots = eyes.find_gui(gui['spots'])
-    print('spots', spots)
+    print('3. spots', spots)
     cargo = eyes.find_gui(gui['cargo'])
-    print('cargo', cargo)
+    print('4. cargo', cargo)
     drones = eyes.find_gui(gui['drones'])
-    print('drones', drones)
+    print('5. drones', drones)
 
 except:
     pass
+# hands.undock()
+# sleep(5)
 # hands.go_to_spot(spots)
 # sleep(3)
-
+#
 # while True:
 #     sleep(1)
 #     qwe = pyautogui.locateOnScreen(warp, confidence=.75)
@@ -44,3 +48,20 @@ except:
 # www = pyautogui.screenshot(region=chat)
 # www =cv2.cvtColor(np.array(www), cv2.COLOR_RGB2BGR)
 # cv2.imwrite('./images/12.png', www)
+
+def test():
+    hands.dock(overview)
+    sleep(7)
+    hands.undock(overview)
+    sleep(5)
+    hands.go_to_spot(spots)
+    sleep(3)
+    while True:
+        sleep(1)
+        qwe = pyautogui.locateOnScreen(warp, confidence=.75)
+        if qwe is None:
+            break
+    sleep(2)
+    hands.dock(overview)
+
+test()

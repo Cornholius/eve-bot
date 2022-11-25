@@ -4,9 +4,9 @@ import cv2
 screenshot = cv2.imread('./images/screenshot.png')
 
 # стенды
-plus = cv2.imread('images/standings/standings/plus.png')
-minus1 = cv2.imread('images/standings/standings/minus1.png')
-minus2 = cv2.imread('images/standings/standings/minus2.png')
+plus = cv2.imread('images/standings/plus.png')
+minus1 = cv2.imread('images/standings/minus1.png')
+minus2 = cv2.imread('images/standings/minus2.png')
 
 # цитадели
 dock = cv2.imread('images/citadel/dock.png')
