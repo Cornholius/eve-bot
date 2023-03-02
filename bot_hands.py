@@ -1,5 +1,4 @@
 from random import uniform
-
 import pyautogui
 import pydirectinput
 import numpy as np
@@ -9,7 +8,7 @@ from time import sleep
 
 class Logic:
 
-    def hotkey(self, key1, key2):
+    def hotkey(self, key1=None, key2=None):
         pydirectinput.keyDown(key1)
         pydirectinput.keyDown(key2)
         sleep(round(uniform(0.1, 0.7), 3))
@@ -33,7 +32,6 @@ class Logic:
             if undock_button is not None:
                 sleep(3)
                 break
-        # undock_button = pyautogui.locateCenterOnScreen(undock, region=(1500, 100, 1900, 400), confidence=.75)
         pyautogui.dragTo(undock_button)
         sleep(round(uniform(0.3, 1.1), 2))
         pydirectinput.leftClick()

@@ -1,12 +1,7 @@
-from time import sleep
 import pyautogui
-import pydirectinput
-import cv2
-import numpy as np
 from bot_eyes import Find
 from img import *
 from time import sleep
-import time
 from bot_hands import Logic
 
 sleep(2)
@@ -14,6 +9,7 @@ sleep(2)
 # Инициализация бота
 eyes = Find()
 hands = Logic()
+
 # Подготовка и поиск элементов интерфейса
 eyes.screenshot_gui()
 overview, chat, spots, cargo, drones = 0, 0, 0, 0, 0
@@ -49,6 +45,7 @@ except:
 # www =cv2.cvtColor(np.array(www), cv2.COLOR_RGB2BGR)
 # cv2.imwrite('./images/12.png', www)
 
+
 def test():
     hands.dock(overview)
     sleep(7)
@@ -64,4 +61,6 @@ def test():
     sleep(2)
     hands.dock(overview)
 
-test()
+
+if __name__ == "main":
+    test()
