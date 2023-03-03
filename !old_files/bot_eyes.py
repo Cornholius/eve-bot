@@ -1,5 +1,5 @@
 import numpy as np
-from img import *
+from images.img import *
 import pyautogui
 import ctypes
 
@@ -18,12 +18,12 @@ class Find:
 
     def find_gui(self, image):
         screenshot = cv2.imread("./images/screenshot.png")
-        corner1 = pyautogui.locate(image[0], screenshot, confidence=.75)  # ищем левый верхний угол
+        corner1 = pyautogui.locate(gui[image][0], screenshot, confidence=.75)  # ищем левый верхний угол
         if corner1[0] < 700:  # если элемент слева то ищем в 1/3 ширине экрана
             area = screenshot[corner1[1]:self.height, corner1[0]:self.width // 3]
         else:
             area = screenshot[corner1[1]:self.height, corner1[0]:self.width]
-        corner2 = pyautogui.locate(image[1], area, confidence=.90)  # отсекаем лишние и ищем правый нижний угол
+        corner2 = pyautogui.locate(gui[image][1], area, confidence=.90)  # отсекаем лишние и ищем правый нижний угол
         gui_borders_coord = (corner1[0],
                              corner1[1],
                              corner2[0] + corner2[2] + corner1[0],

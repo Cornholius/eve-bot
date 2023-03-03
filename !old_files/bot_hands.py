@@ -1,8 +1,7 @@
 from random import uniform
 import pyautogui
 import pydirectinput
-import numpy as np
-from img import *
+from images.img import *
 from time import sleep
 
 
