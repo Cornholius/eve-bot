@@ -2,13 +2,15 @@ from modules.interface import Interface
 from images.img import *
 from time import sleep
 from modules.moving import Moving
+from modules.IO import IO
+
 
 sleep(2)
 
 # Инициализация бота
 ui = Interface()
 moving = Moving()
-
+io = IO()
 # Подготовка и поиск элементов интерфейса
 ui.screenshot_gui()
 overview, chat, spots, cargo, drones = 0, 0, 0, 0, 0
@@ -25,11 +27,15 @@ try:
     print('5. drones', drones)
 
 except:
-    pass
+    print("Не все элементы управления определены")
 # resim = cv2.imread("./images/screenshot.png")
 # for i in [overview, chat, spots, cargo, drones]:
 #
 #     cv2.imshow(f'{i}', resim[i[1]:i[3], i[0]:i[2]])
 #     cv2.waitKey(0)
 # cv2.destroyAllWindows()
-moving.dock(spots)
+# moving.go_to_spot(spots)
+# moving.dock(spots)
+# sleep(30)
+# moving.undock()
+io.test()
