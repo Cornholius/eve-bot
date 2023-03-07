@@ -3,8 +3,11 @@ from images.img import *
 from time import sleep
 from modules.moving import Moving
 from modules.IO import IO
+import logging
 
 
+logging.getLogger('ruautogui.mouse').setLevel(logging.INFO)
+logging.getLogger('ruautogui.bezier').setLevel(logging.INFO)
 sleep(2)
 
 # Инициализация бота
@@ -34,8 +37,11 @@ except:
 #     cv2.imshow(f'{i}', resim[i[1]:i[3], i[0]:i[2]])
 #     cv2.waitKey(0)
 # cv2.destroyAllWindows()
-# moving.go_to_spot(spots)
 # moving.dock(spots)
 # sleep(30)
-# moving.undock()
-io.test()
+moving.undock()
+# sleep(30)
+moving.go_to_spot(spots)
+# sleep(30)
+moving.dock(spots)
+# sleep(30)T

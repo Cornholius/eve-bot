@@ -36,6 +36,7 @@ class Logic:
         pydirectinput.leftClick()
         while True:
             qwe = pyautogui.locateOnScreen(gui['overview'][0], region=coords, confidence=.75)
+            print(qwe)
             if qwe is not None:
                 sleep(1)
                 break

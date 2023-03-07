@@ -16,7 +16,7 @@ class Interface:
         full_screenshot = cv2.cvtColor(np.array(full_screenshot), cv2.COLOR_RGB2BGR)
         cv2.imwrite('./images/screenshot.png', full_screenshot)
 
-    def find_gui(self, image):
+    def find_gui(self, image, screen=None):
         screen = cv2.imread("./images/screenshot.png")
         corner1 = pyautogui.locate(gui[image][0], screen, confidence=.90)  # ищем левый верхний угол
         if corner1[0] < 700:  # если элемент слева то ищем в 1/3 ширине экрана
