@@ -15,7 +15,7 @@ spot = cv2.imread('images/citadel/spot.png')
 dock_spot = cv2.imread('images/citadel/dock_spot.png')
 
 # в космосе
-warping = cv2.imread('images/space/warping.png')
+establishing_warp = cv2.imread('images/space/establishing.png')
 warp_drive_active = cv2.imread('images/space/warp_drive_active.png')
 warp = cv2.imread('images/space/warp.png')
 warp_to = cv2.imread('images/space/warp_to.png')

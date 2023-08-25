@@ -14,9 +14,11 @@ sleep(2)
 ui = Interface()
 moving = Moving()
 io = IO()
+
 # Подготовка и поиск элементов интерфейса
 ui.screenshot_gui()
 overview, chat, spots, cargo, drones = 0, 0, 0, 0, 0
+
 try:
     overview = ui.find_gui('overview')
     print('1. overview', overview)
@@ -29,19 +31,22 @@ try:
     drones = ui.find_gui('drones')
     print('5. drones', drones)
 
-except:
+except Exception:
+    print(Exception)
     print("Не все элементы управления определены")
+
 # resim = cv2.imread("./images/screenshot.png")
 # for i in [overview, chat, spots, cargo, drones]:
 #
 #     cv2.imshow(f'{i}', resim[i[1]:i[3], i[0]:i[2]])
 #     cv2.waitKey(0)
 # cv2.destroyAllWindows()
-# moving.dock(spots)
+
+moving.dock(spots)
+while not moving.warping_done(): sleep(1)
 # sleep(30)
 moving.undock()
-# sleep(30)
 moving.go_to_spot(spots)
 # sleep(30)
-moving.dock(spots)
+# moving.dock(spots)
 # sleep(30)T
