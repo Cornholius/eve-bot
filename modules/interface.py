@@ -19,7 +19,7 @@ class Interface:
     def find_gui(self, image, screen=None):
         screen = cv2.imread("./images/screenshot.png")
         corner1 = pyautogui.locate(gui[image][0], screen, confidence=.90)  # ищем левый верхний угол
-        if corner1[0] < 700:  # если элемент слева то ищем в 1/3 ширине экрана
+        if corner1[0] < 700:  # если элемент слева, то ищем в 1/3 ширине экрана
             area = screen[(corner1[1] + 100):self.height, corner1[0]:self.width // 3]
         else:
             area = screen[(corner1[1] + 100):self.height, corner1[0]:self.width]
@@ -31,8 +31,8 @@ class Interface:
         return gui_borders_coord
 
     def find_object_in_overview(self, image, coords):
-        object_screenshot = pyautogui.screenshot(region=coords)
+        object_screenshot = pyautogui.screenshot(region=tuple(coords))
         ingame_object = pyautogui.locate(image, object_screenshot)
-        coordinates = [coords[0] + ingame_object[0] + (ingame_object[2] / 2),
-                       coords[1] + ingame_object[1] + (ingame_object[3] / 2)]
+        coordinates = [tuple(coords)[0] + ingame_object[0] + (ingame_object[2] / 2),
+                       tuple(coords)[1] + ingame_object[1] + (ingame_object[3] / 2)]
         pyautogui.dragTo(coordinates[0], coordinates[1])

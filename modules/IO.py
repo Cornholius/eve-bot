@@ -1,10 +1,10 @@
-from pyautogui import moveTo
-from time import sleep
 from ruautogui import mouse
+
 
 class IO:
 
-    def move(self, end_point):
+    @staticmethod
+    def move(end_point):
         inaccuracy = 7
         box = [
             end_point[0] - inaccuracy,

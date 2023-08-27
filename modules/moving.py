@@ -1,17 +1,27 @@
 import random
 from random import uniform
-import pyautogui
+from pyautogui import locateOnScreen, locateCenterOnScreen
 import pydirectinput
-from images.img import *
+from images.img import citadel, gui, space
 from time import sleep
-import ctypes
 from modules.IO import IO
+
 
 # ui = Interface()
 io = IO()
 
 
 class Moving:
+
+    @staticmethod
+    def pause():
+        sleep(random.uniform(0.3, 1.0))
+
+    @staticmethod
+    def round_menu():
+        pos = pydirectinput.position()
+        menu_area = (pos[0] - 100, pos[1] - 100, 200, 200)
+        return menu_area
 
     def hotkey(self, key1=None, key2=None):
         pydirectinput.keyDown(key1)
@@ -21,45 +31,32 @@ class Moving:
         pydirectinput.keyUp(key2)
         pydirectinput.keyUp(key1)
 
-    def pause(self):
-        sleep(random.uniform(0.3, 1.0))
-
     def dock(self, coords):
-        q = pyautogui.locateCenterOnScreen(dock_spot, region=coords, confidence=.9)
-        # ms.move(q)
-        io.move(q)
+        docking_spot = locateCenterOnScreen(citadel['dock_spot'], region=coords, confidence=.9)
+        io.move(docking_spot)
         self.pause()
         pydirectinput.rightClick()
         self.pause()
-        w = pyautogui.locateCenterOnScreen(dock, region=coords, confidence=.9)
-        print('dock coords', w)
-        # ms.move(w)
-        io.move(w)
+        dock_icon = locateCenterOnScreen(citadel['dock'], region=coords, confidence=.9)
+        io.move(dock_icon)
         self.pause()
         pydirectinput.leftClick()
 
     def undock(self):
-        # width = ctypes.windll.user32.GetSystemMetrics(0)
-        # height = ctypes.windll.user32.GetSystemMetrics(1)
-        # undock_screen_area = pyautogui.screenshot(region=(width * 0.75, 0, width * 0.25, height * 0.4))
-        # undock_button = pyautogui.locateCenterOnScreen(undock)
         while True:
-            undock_button = pyautogui.locateCenterOnScreen(undock)
+            undock_button = locateCenterOnScreen(citadel['undock'])
             if undock_button:
                 print('undock button found')
                 break
             else:
                 sleep(5)
-        # ms.move((int(undock_button.left + width * 0.75), int(undock_button.top)))
-        # print((int(undock_button.left + width * 0.75), int(undock_button.top)))
-        # io.move(end_point=[int(undock_button.left + width * 0.75), int(undock_button.top)])
         io.move(undock_button)
         self.pause()
         pydirectinput.leftClick()
         print('undocking...')
         while True:
-            qwe = pyautogui.locateOnScreen('images/gui/overview_border_start.png')
-            if qwe:
+            nav_panel_corner = locateOnScreen(gui['overview'][0])
+            if nav_panel_corner:
                 print('undock is done')
                 break
             else:
@@ -68,24 +65,20 @@ class Moving:
         self.hotkey('ctrl', 'space')
 
     def go_to_spot(self, coords):
-        q = pyautogui.locateCenterOnScreen(spot, region=coords, confidence=.9)
-        print('spot coords', q)
-
-        # ms.move(q)
-        io.move(q)
+        spot_label = locateCenterOnScreen(space['spot'], region=coords, confidence=.9)
+        io.move(spot_label)
         self.pause()
         pydirectinput.rightClick()
         self.pause()
-        q2 = pyautogui.locateCenterOnScreen(warp_to, region=coords, confidence=.9)
-        # ms.move(q2)
-        io.move(q2)
+        warp_to_icon = locateCenterOnScreen(space['warp_to'], region=coords, confidence=.9)
+        io.move(warp_to_icon)
         self.pause()
         pydirectinput.leftClick()
 
     def warping_done(self):
         sleep(2)
         while True:
-            establishing_warp_vector = pyautogui.locateOnScreen(establishing_warp)
+            establishing_warp_vector = locateOnScreen(space['establishing_warp'])
             if establishing_warp_vector:
                 print('establising warp')
                 sleep(1)
@@ -95,7 +88,7 @@ class Moving:
                 break
 
         while True:
-            warp_is_active = pyautogui.locateOnScreen(warp_drive_active)
+            warp_is_active = locateOnScreen(space['warp_drive_active'])
             if warp_is_active:
                 print('Warping')
                 sleep(1)
