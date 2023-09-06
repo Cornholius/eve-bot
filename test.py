@@ -1,20 +1,25 @@
-# resim = cv2.imread("./images/screenshot.png")
-# for i in [overview, chat, spots, cargo, drones]:
-#
-#     cv2.imshow(f'{i}', resim[i[1]:i[3], i[0]:i[2]])
-#     cv2.waitKey(0)
-# cv2.destroyAllWindows()
+import win32con
+import win32gui
+from time import sleep
+import win32com.client
+import win32con
 
-import pyautogui
-import cv2
-import numpy as np
-import pydirectinput
+corn = win32gui.FindWindow(None, 'EVE - Corn812')
+cornilita = win32gui.FindWindow(None, 'EVE - Cornilita Rus')
+salman = win32gui.FindWindow(None, "EVE - Salman Del'Pino")
+# shell = win32com.client.Dispatch("WScript.Shell")
 
-pos = pydirectinput.position()
-menu_area = (pos[0], pos[1], 200, 200)
-full_screenshot = pyautogui.screenshot(region=menu_area)
-full_screenshot = cv2.cvtColor(np.array(full_screenshot), cv2.COLOR_RGB2BGR)
-cv2.imwrite('./images/round_menu.png', full_screenshot)
-resim = cv2.imread("./images/round_menu.png")
-cv2.imshow(resim)
-cv2.waitKey(0)
+win32gui.SetForegroundWindow(cornilita)
+sleep(3)
+win32gui.ShowWindow(corn, win32con.SW_MAXIMIZE)
+sleep(2)
+win32gui.ShowWindow(corn, win32con.SW_MINIMIZE)
+sleep(2)
+win32gui.ShowWindow(salman, win32con.SW_MAXIMIZE)
+sleep(2)
+win32gui.ShowWindow(salman, win32con.SW_MINIMIZE)
+# shell.SendKeys('alt')
+# win32gui.SetForegroundWindow(corn)
+# sleep(3)
+# shell.SendKeys('alt')
+# win32gui.SetForegroundWindow(salman)

@@ -23,7 +23,8 @@ class Moving:
         menu_area = (pos[0] - 100, pos[1] - 100, 200, 200)
         return menu_area
 
-    def hotkey(self, key1=None, key2=None):
+    @staticmethod
+    def hotkey(key1=None, key2=None):
         pydirectinput.keyDown(key1)
         sleep(round(uniform(0.1, 0.7), 3))
         pydirectinput.keyDown(key2)
@@ -35,12 +36,12 @@ class Moving:
         docking_spot = locateCenterOnScreen(citadel['dock_spot'], region=coords, confidence=.9)
         io.move(docking_spot)
         self.pause()
-        pydirectinput.rightClick()
-        self.pause()
-        dock_icon = locateCenterOnScreen(citadel['dock'], region=coords, confidence=.9)
+        pydirectinput.mouseDown()
+        Moving.pause()
+        dock_icon = locateCenterOnScreen(citadel['dock'], region=self.round_menu(), confidence=.9)
         io.move(dock_icon)
-        self.pause()
-        pydirectinput.leftClick()
+        Moving.pause()
+        pydirectinput.mouseUp()
 
     def undock(self):
         while True:
@@ -68,14 +69,15 @@ class Moving:
         spot_label = locateCenterOnScreen(space['spot'], region=coords, confidence=.9)
         io.move(spot_label)
         self.pause()
-        pydirectinput.rightClick()
-        self.pause()
-        warp_to_icon = locateCenterOnScreen(space['warp_to'], region=coords, confidence=.9)
+        pydirectinput.mouseDown()
+        Moving.pause()
+        warp_to_icon = locateCenterOnScreen(space['warp_to'], region=self.round_menu(), confidence=.9)
         io.move(warp_to_icon)
-        self.pause()
-        pydirectinput.leftClick()
+        Moving.pause()
+        pydirectinput.mouseUp()
 
-    def warping_done(self):
+    @staticmethod
+    def warping_done():
         sleep(2)
         while True:
             establishing_warp_vector = locateOnScreen(space['establishing_warp'])

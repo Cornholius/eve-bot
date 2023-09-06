@@ -6,8 +6,6 @@ from modules.IO import IO
 import pydirectinput
 
 
-
-
 class Drones:
 
     def launch_drones(self, group, coords):
@@ -16,10 +14,13 @@ class Drones:
         Moving.pause()
         pydirectinput.mouseDown()
         Moving.pause()
-
-
-
         launch_icon = locateCenterOnScreen(drone['launch'], region=Moving.round_menu(), confidence=.9)
         IO.move(launch_icon)
         Moving.pause()
         pydirectinput.mouseUp()
+
+    def return_drones(self):
+        Moving.hotkey('shift', 'r')
+
+    def engage(self):
+        Moving.hotkey('shift', 'r')

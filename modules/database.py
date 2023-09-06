@@ -34,7 +34,7 @@ class Database:
                        ')')
         cursor.execute("""
         INSERT INTO Ui (name, coords) 
-        VALUES ('overview', ''), ('chat', ''), ('cargo', ''), ('drones', ''), ('spots', '');
+        VALUES ('overview', ''), ('chat', ''), ('cargo', ''), ('drones', ''), ('spots', ''), ('probe_scanner', '');
         """)
         connection.commit()
         connection.close()
