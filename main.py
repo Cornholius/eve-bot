@@ -109,7 +109,6 @@ def mining_mode():
     print(f'{Colors.FAIL}HOSTILE IN LOCAL!')
 
 
-
 find_enemy = Thread(target=check_for_hostile, args=list(db.get_data('chat')))
 bot_mode = Thread(target=mining_mode)
 find_enemy.start()
